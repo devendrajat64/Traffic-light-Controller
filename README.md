@@ -1,0 +1,2 @@
+# Traffic-light-Controller
+ simulated TRAFFIC LIGHT CONTROLLER using  8086 microprocessor. The simulations have been carried out  using the Proteus ISIS Schematic capture 8 which allows us to  create a firmware project based on 8086 processor.  It allowed us to simulate 8086 as a preassembled kit which has  the memory already interfaced with the processor.  The MASM32 assembler program was used to the compile the  source code for the project
