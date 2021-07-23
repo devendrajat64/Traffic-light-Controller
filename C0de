@@ -1,0 +1,157 @@
+
+;DECLARING CWR TO DECLARE ALL PORTS AS OUTPUT PORT
+      MOV AL,80H
+      OUT FFH,AL  
+
+    ;First we glow redlight of East and west direction
+START: MOV AL,01H
+       OUT FCH,AL ;PORT A
+       OUT FDH,AL ;PORT B 
+
+    ; To glow green light of direction North and South
+
+       MOV AL,42H
+       OUT FEH,AL ; PORT C  
+
+
+        CALL DELAY_1
+
+ 
+    ; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2
+    
+    
+; NOW WE HAVT TO GLOW THE GREEN LIGHTS OF EAST AND WEST DIRECTION
+; AND RED LIGHTS OF NORTH AND SOUTH DIRECTION
+
+
+       ;GRREN LIGHTS ON 
+       
+       MOV AL,02H
+       OUT FCH,AL ;PORT A
+       OUT FDH,AL ;PORT B 
+
+    ; To glow RED light of direction North and South
+
+       MOV AL,21H
+       OUT FEH,AL ; PORT C  
+
+
+        CALL DELAY_1
+
+ 
+    ; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2  
+
+; one way is on all other 3 roads traffic is stop red light 
+
+
+; EAST ROAD light is green 
+       MOV AL,02H
+       OUT 0FCH,AL ; GREEN LIGHT ON
+       MOV AL ,01H
+       OUT 0FDH,AL ; WEST ROAD RED LIGHT ON
+       MOV AL,21H  
+	OUT 0FEH,AL ; NORTH AND SOUTH RED LIGHT ON
+   CALL DELAY_1
+
+      ; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2  
+
+;NORTH ROAD light is green
+     
+    MOV AL,41H
+    OUT 0FEH,AL ; GREEN LIGHT NORTH AND RED LIGHT SOUTH 
+
+  MOV AL ,01H
+  OUT 0FDH,AL ; WEST ROAD RED LIGHT ON
+  OUT OFCH,AL ;EAST ROAD LIGHT ON
+
+; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2  
+
+;west Road light is green 
+
+       MOV AL,02H
+       OUT 0FDH,AL ; GREEN LIGHT ON
+       MOV AL ,01H
+       OUT 0FCH,AL ; WEST ROAD RED LIGHT ON
+       MOV AL,21H  
+       OUT 0FEH,AL ; NORTH AND SOUTH RED LIGHT ON
+   CALL DELAY_1
+
+
+; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2  
+;South Road light is green 
+
+    MOV AL,22H
+    OUT 0FEH,AL ; GREEN LIGHT NORTH AND RED LIGHT SOUTH 
+
+    MOV AL ,01H
+    OUT 0FDH,AL ; WEST ROAD RED LIGHT ON
+    OUT OFCH,AL ;EAST ROAD LIGHT ON
+
+	
+    ; TO GLOW ALL YELLOW LIGHTS 
+ 
+    MOV AL,04H
+    OUT FCH,AL
+    OUT FDH,AL
+    MOV AL,84H
+    OUT FEH,AL
+    
+    CALL DELAY_2  
+
+    JMP START     
+    
+ DELAY_1: 
+         
+         MOV CX,E4H ;DELAY 50 SEC 
+      UP:NOP
+         NOP
+         LOOP UP   
+         RET
+           
+ DELAY_2: MOV CX,39H ;DELAY 12.5 SEC 
+    BACK: NOP
+          NOP
+          LOOP BACK
+          RET
+        
+    
